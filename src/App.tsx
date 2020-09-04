@@ -1,9 +1,11 @@
 import React, { useRef, useCallback, FormEvent } from 'react';
 import Input from './components/Input';
+import Modal, { ModalHandles } from './components/Modal';
 
 function App() {
   const nameInputRef = useRef<HTMLInputElement>(null)
   const acceptTermsRef = useRef({ value: false })
+  const modalRef = useRef<ModalHandles>(null)
 
   const handleSubmit = useCallback((e: FormEvent) => {
     e.preventDefault()
@@ -17,6 +19,10 @@ function App() {
 
   const handleAcceptTerms = useCallback(() => {
     acceptTermsRef.current.value = !acceptTermsRef.current.value
+  }, [])
+
+  const handleOpenModal = useCallback(() => {
+    modalRef.current?.openModal()
   }, [])
 
   return (
@@ -34,6 +40,10 @@ function App() {
 
         <button type="submit">Realizar foco</button>
       </form>
+
+      <button onClick={handleOpenModal}>Abrir modal</button>
+
+      <Modal ref={modalRef} />
     </div>
   );
 }
