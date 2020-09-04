@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes } from 'react';
+import React, { InputHTMLAttributes, forwardRef } from 'react';
 
 // import { Container } from './styles';
 
@@ -7,18 +7,18 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
 }
 
-const Input: React.FC<InputProps> = ({ name, label, ...rest }) => {
+const Input: React.RefForwardingComponent<HTMLInputElement, InputProps> = ({ name, label, ...rest }, ref) => {
   return (
     <div className="input-block">
       <label htmlFor={name}>{label}</label>
 
       <input 
+        ref={ref}
         type="text" 
-        // ref={nameInputRef}
         {...rest}
       />
     </div>
   )
 }
 
-export default Input;
+export default forwardRef(Input);

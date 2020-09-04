@@ -22,7 +22,11 @@ function App() {
   return (
     <div className="App">
       <form onSubmit={handleSubmit}>
-        <Input name="name" label="Nome Completo" />
+        <Input 
+          name="name" 
+          label="Nome Completo" 
+          ref={nameInputRef}
+        />
 
         <button type="button" onClick={handleAcceptTerms}>
           Aceitar termos
