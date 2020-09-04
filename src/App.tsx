@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useRef, useCallback } from 'react';
 
 function App() {
+  const nameInputRef = useRef<HTMLInputElement>(null)
+
+  const handleFocus = useCallback(() => {
+    nameInputRef.current?.focus()
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input 
+        type="text" 
+        placeholder="Digite seu nome"
+        ref={nameInputRef}
+      />
+
+      <button onClick={handleFocus}>Realizar foco</button>
     </div>
   );
 }
