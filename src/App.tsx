@@ -1,4 +1,5 @@
 import React, { useRef, useCallback, FormEvent } from 'react';
+import Input from './components/Input';
 
 function App() {
   const nameInputRef = useRef<HTMLInputElement>(null)
@@ -21,11 +22,7 @@ function App() {
   return (
     <div className="App">
       <form onSubmit={handleSubmit}>
-        <input 
-          type="text" 
-          placeholder="Digite seu nome"
-          ref={nameInputRef}
-        />
+        <Input name="name" label="Nome Completo" />
 
         <button type="button" onClick={handleAcceptTerms}>
           Aceitar termos
